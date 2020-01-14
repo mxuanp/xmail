@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title>{{.loginTitle}}</title>
+    <link href="/static/css/login-default.css" rel="stylesheet" type="text/css"/>
+    <!--必要样式-->
+    <link href="/static/css/login-styles.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/login-demo.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/login-loaders.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class='login'>
+    <div class='login_fields'>
+        <div class='login_fields__user'>
+            {{/*            <div class='icon'>*/}}
+            {{/*                <img alt="" src='/static/img/user_icon_copy.png'>*/}}
+            {{/*            </div>*/}}
+            <input name="email" placeholder='{{.email}}' type='text' autocomplete="off"/>
+            <div class='validation'>
+                <img alt="" src='/static/img/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__password'>
+            {{/*            <div class='icon'>*/}}
+            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
+            {{/*            </div>*/}}
+            <input name="pwd" placeholder='{{.password}}' type='text' autocomplete="off">
+            <div class='validation'>
+                <img alt="" src='/static/img/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__host'>
+            {{/*            <div class='icon'>*/}}
+            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
+            {{/*            </div>*/}}
+            <input name="host" placeholder='{{.host}}' type='text' autocomplete="off">
+            <div class='validation'>
+                <img alt="" src='/static/img/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__port'>
+            {{/*            <div class='icon'>*/}}
+            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
+            {{/*            </div>*/}}
+            <input name="port" placeholder='{{.port}}' type='text' value="993" autocomplete="off">
+            <div class='validation'>
+                <img alt="" src='/static/img/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__submit' id="login-button">
+            <input type='button' value='{{.loginButton}}'>
+        </div>
+    </div>
+</div>
+<div class='authent'>
+    <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
+        <div class="loader-inner ball-clip-rotate-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <p>{{.authInfo}}...</p>
+</div>
+<div class="OverWindows"></div>
+
+<link href="/static/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src='/static/js/stopExecutionOnTimeout.js?t=1'></script>
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/Particleground.js"></script>
+<script type="text/javascript" src="/static/js/jquery.mockjax.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $(document).keypress(function (e) {
+        // 回车键事件
+        if (e.which == 13) {
+            $('input[type="button"]').click();
+        }
+    });
+    //粒子背景特效
+    $('body').particleground({
+        dotColor: '#E8DFE8',
+        lineColor: '#133b88'
+    });
+    $('input[name="pwd"]').focus(function () {
+        $(this).attr('type', 'password');
+    });
+    $('input[type="text"]').focus(function () {
+        $(this).prev().animate({'opacity': '1'}, 200);
+    });
+    $('input[type="text"],input[type="password"]').blur(function () {
+        $(this).prev().animate({'opacity': '.5'}, 200);
+    });
+    $('input[name="pwd"]', 'input[name="host"]', 'input[name="port"]').keyup(function () {
+        var Len = $(this).val().length;
+        if (!$(this).val() == '' && Len >= 1) {
+            $(this).next().animate({
+                'opacity': '1',
+                'right': '30'
+            }, 200);
+        } else {
+            $(this).next().animate({
+                'opacity': '0',
+                'right': '20'
+            }, 200);
+        }
+    });
+    $('input[name="email"]').keyup(function () {
+        var Len = $(this).val().length;
+        if (!$(this).val() == '' && Len >= 1) {
+            $(this).next().animate({
+                'opacity': '1',
+                'right': '30'
+            }, 200);
+        } else {
+            $(this).next().animate({
+                'opacity': '0',
+                'right': '20'
+            }, 200);
+        }
+        var email = $(this).val();
+        if (email.indexOf("@") != -1) {
+            $('input[name="host"]').val(email.split("@")[1]);
+        }
+    })
+    var open = 0;
+    layui.use('layer', function () {
+        //非空验证
+        $('input[type="button"]').click(function () {
+            swal({
+                text: "{{.confirm}}",
+                icon: "warning",
+                buttons: {
+                    button1: {
+                        text: "{{.cancel}}",
+                        value: false,
+                    }
+                    , button2: {
+                        text: "{{.ok}}",
+                        value: true,
+                    }
+                },
+            }).then(function (value) {
+                if (value) {
+                    var email = $('input[name="email"]').val();
+                    var pwd = $('input[name="pwd"]').val();
+                    var host = $('input[name="host"]').val();
+                    var port = $('input[name="port"]').val();
+                    // var code = $('input[name="code"]').val();
+                    if (email == '') {
+                        alertError('{{.emailError}}');
+                    } else if (pwd == '') {
+                        alertError('{{.pwdError}}');
+                    } else if (host == '') {
+                        alertError('{{.hostError}}');
+                    } else if (port == '') {
+                        alertError('{{.portError}}')
+                    } else {
+                        //认证中..
+                        $('.login').addClass('test'); //倾斜特效
+                        setTimeout(function () {
+                            $('.login').addClass('testtwo'); //平移特效
+                        }, 300);
+                        setTimeout(function () {
+                            $('.authent').show().animate({right: -320}, {
+                                easing: 'easeOutQuint',
+                                duration: 600,
+                                queue: false
+                            });
+                            $('.authent').animate({opacity: 1}, {
+                                duration: 200,
+                                queue: false
+                            }).addClass('visible');
+                        }, 500);
+                        //登录
+                        var JsonData = {email: email, pwd: pwd, host: host, port: port};
+                        // var url = "/login";
+                        AjaxPost("/api/login", JsonData,
+                            function () {
+                                //ajax加载中
+                            },
+                            function (resp, status) {
+                                //ajax返回
+                                setTimeout(function () {
+                                    $('.authent').show().animate({right: 90}, {
+                                        easing: 'easeOutQuint',
+                                        duration: 600,
+                                        queue: false
+                                    });
+                                    $('.authent').animate({opacity: 0}, {
+                                        duration: 200,
+                                        queue: false
+                                    }).addClass('visible');
+                                    $('.login').removeClass('testtwo'); //平移特效
+                                }, 2000);
+                                setTimeout(function () {
+                                    $('.authent').hide();
+                                    $('.login').removeClass('test');
+                                    if (resp.code == '0200') {
+                                        //登录成功
+                                        $('.login div').fadeOut(100);
+                                        swal(resp.message, {
+                                            button: false,
+                                            timer: 2000,
+                                            icon: "success",
+                                        });
+                                        //2s后跳转操作
+                                        setTimeout(function () {
+                                            window.location.href = "/goHome";
+                                        }, 2000)
+                                    } else {
+                                        alertError(resp.message, 2000);
+                                    }
+                                }, 2400);
+                            })
+                    }
+                }
+            })
+        })
+    })
+
+    //Ajax提交
+    function AjaxPost(Url, JsonData, LodingFun, ReturnFun) {
+        $.ajax({
+            type: "post",
+            url: Url,
+            data: JsonData,
+            // dataType: 'json',
+            async: 'false',
+            beforeSend: LodingFun,
+            error: function (err) {
+                alertError(err);
+            },
+            success: ReturnFun
+        });
+    }
+
+    function alertError(err, timer = 1000) {
+        swal(err, {
+            button: false,
+            timer: timer,
+            icon: "error",
+        });
+    }
+
+    function inputKeyup() {
+
+    }
+
+</script>
+
+</body>
+</html>

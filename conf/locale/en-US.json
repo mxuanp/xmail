@@ -1,0 +1,21 @@
+{
+  "welcome":"Welcome to use xmail",
+  "email": "Email",
+  "password": "Password",
+  "loginTitle": "Login to your mail",
+  "loginButton": "Login",
+  "emailError": "Please input your email",
+  "pwdError": "Please input your password",
+  "hostError": "Please input host",
+  "portError": "Please input port",
+  "loginError":"Auto login failed",
+  "loginSuccess": "Login success",
+  "authInfo": "Authenticating",
+  "host": "Host",
+  "port": "Port",
+  "confirm": "Please double check your host and port",
+  "cancel": "Check again",
+  "ok": "It's ok",
+  "navigation":"Main Navigation",
+  "subNav":"Mailbox Main Navigation Area."
+}
