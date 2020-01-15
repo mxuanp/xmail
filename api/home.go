@@ -12,31 +12,22 @@ import (
 	"xmail/utils"
 )
 
-var (
-	//Users用户的登录信息，全局使用
-	Users []model.User
-	//当前登录用户
-	CurrentUser model.User
-	// Locale用于放置模板中要替换的信息,全局使用
-	Locale *map[string]string
-	//邮箱客户端
-	Client *client.Client
-)
+var Client *client.Client
 
 func init() {
-	Locale = conf.Init()
+	//加载登录且未注销的用户信息
 	f, err := os.Open("conf/user.json")
 	if err != nil {
 		return
 	}
-	json.NewDecoder(f).Decode(&Users)
-	if len(Users) != 0{
-		CurrentUser = Users[0]
+	json.NewDecoder(f).Decode(&conf.Context.Users)
+	if len(conf.Context.Users) != 0 {
+		conf.Context.CurrentUser = conf.Context.Users[0]
 		var err error
-		if Client, err = ConnectServer(CurrentUser.Email, CurrentUser.Password, CurrentUser.MailHost, CurrentUser.Port); err != nil{
-			log.Println((*Locale)["loginError"])
-			Users = utils.Remove(Users, CurrentUser)
-			CurrentUser= model.User{}
+		if Client, err = ConnectServer(conf.Context.CurrentUser.Email, conf.Context.CurrentUser.Password, conf.Context.CurrentUser.MailHost, conf.Context.CurrentUser.Port); err != nil {
+			log.Println(conf.Context.Locale["loginError"])
+			conf.Context.Users = utils.Remove(conf.Context.Users, conf.Context.CurrentUser)
+			conf.Context.CurrentUser = model.User{}
 			go RestoreUser()
 		}
 	}
@@ -47,23 +38,52 @@ func GoHome(w http.ResponseWriter, r *http.Request) {
 	//当前登录用户为空，即未登录
 	var user model.User
 	r.URL.Path = "/index"
-	if CurrentUser == user {
+	if conf.Context.CurrentUser == user {
 		r.URL.Path = "/login"
 	}
 	GoPage(w, r)
 }
 
 //GoPage 遵照约定，加载指定模板，模板名字为url
-func GoPage(w http.ResponseWriter, r *http.Request){
+func GoPage(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.String()
-	t, err := template.ParseFiles("template"+path+".html")
+	t, err := template.ParseFiles("template" + path + ".html")
 	if err != nil {
 		log.Fatal(err)
 	}
-	t.Execute(w, Locale)
+	t.Execute(w, conf.Context)
+}
+
+//SelectLang 处理转换语言的请求
+func SelectLang(w http.ResponseWriter, r *http.Request){
+	lang := r.FormValue("lang")
+	conf.LoadConfig(lang)
+	result := make(map[string]interface{})
+	utils.FormatResult(&result, "0200", conf.Context.Locale["selectSuccess"], nil)
+	res, _ := json.Marshal(result)
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(res)
 }
 
 //Shutdown 关闭程序，会保留登录信息
-func Shutdown(w http.ResponseWriter, r *http.Request){
+func Shutdown(w http.ResponseWriter, r *http.Request) {
+	result := make(map[string]interface{})
+	utils.FormatResult(&result, "0200", conf.Context.Locale["logoutSuccess"], nil)
+	w.Header().Add("Content-Type", "application/json")
+	if err := Client.Logout(); err != nil {
+		utils.FormatResult(&result, "0300", err.Error(), nil)
+		res, _ := json.Marshal(result)
+		w.Write(res)
+		os.Exit(1)
+	}
+	res, _ := json.Marshal(result)
+	w.Write(res)
 	os.Exit(0)
+}
+
+//Reload 重新加载国际化文件，该api只在开发时使用
+func Reload(w http.ResponseWriter, r *http.Request) {
+	conf.LoadConfig(conf.Context.CurrentLang.Value)
+	r.URL.Path = "/index"
+	GoPage(w, r)
 }

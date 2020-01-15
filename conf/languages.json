@@ -1,0 +1,27 @@
+[
+  {
+    "name": "English",
+    "value": "en-US",
+    "icon": "icon-english"
+  },
+  {
+    "name": "中文",
+    "value": "zh-CN",
+    "icon": "icon-chinese"
+  },
+  {
+	"name":"简体中文",
+	"value":"zh-Hans",
+	"icon":"icon-chinese1"
+  },
+  {
+	"name":"繁体中文",
+	"value":"zh-Hant",
+	"icon":"icon-chinese1"
+  },
+  {
+    "name": "日本語",
+    "value": "ja-JP",
+    "icon": "icon-japanese"
+  }
+]

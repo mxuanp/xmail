@@ -20,6 +20,9 @@ func main() {
 	http.HandleFunc("/api/login", api.Login)
 	http.HandleFunc("/api/logout", api.Logout)
 	http.HandleFunc("/api/shutdown", api.Shutdown)
+	http.HandleFunc("/api/selectLang", api.SelectLang)
+	//这个路径专用于开发时使用
+	http.HandleFunc("/api/reload", api.Reload)
 	go openBrowser()
 	http.ListenAndServe("localhost:8080", nil)
 }
@@ -30,7 +33,7 @@ func openBrowser() {
 		return
 	}
 	if sys == "windows" {
-		exec.Command("cmd", "/c", "start", "http://localhost").Start()
+		exec.Command("cmd", "/c", "start", "http://localhost:8080").Start()
 		return
 	}
 	if sys == "darwin" {

@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"xmail/conf"
 	"xmail/model"
 	"xmail/utils"
 )
@@ -13,7 +14,7 @@ import (
 func Login(w http.ResponseWriter, r *http.Request) {
 	result := make(map[string]interface{})
 	if r.Method != "POST" {
-		utils.FormatResult(&result, "0300", "just support post method", nil)
+		utils.FormatResult(&result, "0300", conf.Context.Locale["methodError"], nil)
 		res, _ := json.Marshal(result)
 		w.Write(res)
 		return
@@ -30,9 +31,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		w.Write(res)
 		return
 	}
-	CurrentUser = model.User{Password: password, Email: email, MailHost: host, Port: port}
-	Users = append(Users, CurrentUser)
-	utils.FormatResult(&result, "0200", (*Locale)["loginSuccess"], CurrentUser)
+	conf.Context.CurrentUser = model.User{Password: password, Email: email, MailHost: host, Port: port}
+	conf.Context.Users = append(conf.Context.Users, conf.Context.CurrentUser)
+	utils.FormatResult(&result, "0200", conf.Context.Locale["loginSuccess"], conf.Context.CurrentUser)
 	res, _ := json.Marshal(result)
 	go RestoreUser()
 	w.Write(res)
@@ -41,8 +42,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 // 退出登录，注销邮箱服务器登录状态
 func Logout(w http.ResponseWriter, r *http.Request) {
 	Client.Logout()
-	Users = utils.Remove(Users, CurrentUser)
-	CurrentUser = model.User{}
+	conf.Context.Users = utils.Remove(conf.Context.Users, conf.Context.CurrentUser)
+	//暂时直接注销登录用户，跳转到登录界面，之后看情况修改逻辑
+	conf.Context.CurrentUser = model.User{}
 	go RestoreUser()
 	GoHome(w, r)
 }
@@ -53,5 +55,5 @@ func RestoreUser() {
 	if err != nil {
 		log.Println(err)
 	}
-	json.NewEncoder(f).Encode(Users)
+	json.NewEncoder(f).Encode(conf.Context.Users)
 }

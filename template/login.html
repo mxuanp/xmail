@@ -8,7 +8,11 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <title>{{.loginTitle}}</title>
+    <title>{{.Locale.loginTitle}}</title>
+    <link rel="apple-touch-icon" sizes="64x64" href="/static/img/icon64.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="/static/img/icon128.ico">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/static/img/icon64.ico">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="/static/img/icon128.ico">
     <link href="/static/css/login-default.css" rel="stylesheet" type="text/css"/>
     <!--必要样式-->
     <link href="/static/css/login-styles.css" rel="stylesheet" type="text/css"/>
@@ -19,43 +23,35 @@
 <div class='login'>
     <div class='login_fields'>
         <div class='login_fields__user'>
-            {{/*            <div class='icon'>*/}}
-            {{/*                <img alt="" src='/static/img/user_icon_copy.png'>*/}}
-            {{/*            </div>*/}}
-            <input name="email" placeholder='{{.email}}' type='text' autocomplete="off"/>
+
+            <input name="email" placeholder='{{.Locale.email}}' type='text' autocomplete="off"/>
             <div class='validation'>
                 <img alt="" src='/static/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__password'>
-            {{/*            <div class='icon'>*/}}
-            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
-            {{/*            </div>*/}}
-            <input name="pwd" placeholder='{{.password}}' type='text' autocomplete="off">
+
+            <input name="pwd" placeholder='{{.Locale.password}}' type='text' autocomplete="off">
             <div class='validation'>
                 <img alt="" src='/static/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__host'>
-            {{/*            <div class='icon'>*/}}
-            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
-            {{/*            </div>*/}}
-            <input name="host" placeholder='{{.host}}' type='text' autocomplete="off">
+
+            <input name="host" placeholder='{{.Locale.host}}' type='text' autocomplete="off">
             <div class='validation'>
                 <img alt="" src='/static/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__port'>
-            {{/*            <div class='icon'>*/}}
-            {{/*                <img alt="" src='/static/img/lock_icon_copy.png'>*/}}
-            {{/*            </div>*/}}
-            <input name="port" placeholder='{{.port}}' type='text' value="993" autocomplete="off">
+
+            <input name="port" placeholder='{{.Locale.port}}' type='text' value="993" autocomplete="off">
             <div class='validation'>
                 <img alt="" src='/static/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__submit' id="login-button">
-            <input type='button' value='{{.loginButton}}'>
+            <input type='button' value='{{.Locale.loginButton}}'>
         </div>
     </div>
 </div>
@@ -67,7 +63,7 @@
             <div></div>
         </div>
     </div>
-    <p>{{.authInfo}}...</p>
+    <p>{{.Locale.authInfo}}...</p>
 </div>
 <div class="OverWindows"></div>
 
@@ -79,7 +75,8 @@
 <script type="text/javascript" src="/static/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/Particleground.js"></script>
 <script type="text/javascript" src="/static/js/jquery.mockjax.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="/static/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="/static/js/xmail.js"></script>
 <script type="text/javascript">
     $(document).keypress(function (e) {
         // 回车键事件
@@ -138,15 +135,15 @@
         //非空验证
         $('input[type="button"]').click(function () {
             swal({
-                text: "{{.confirm}}",
+                text: "{{.Locale.confirm}}",
                 icon: "warning",
                 buttons: {
                     button1: {
-                        text: "{{.cancel}}",
+                        text: "{{.Locale.cancel}}",
                         value: false,
                     }
                     , button2: {
-                        text: "{{.ok}}",
+                        text: "{{.Locale.ok}}",
                         value: true,
                     }
                 },
@@ -158,13 +155,13 @@
                     var port = $('input[name="port"]').val();
                     // var code = $('input[name="code"]').val();
                     if (email == '') {
-                        alertError('{{.emailError}}');
+                        alertError('{{.Locale.emailError}}');
                     } else if (pwd == '') {
-                        alertError('{{.pwdError}}');
+                        alertError('{{.Locale.pwdError}}');
                     } else if (host == '') {
-                        alertError('{{.hostError}}');
+                        alertError('{{.Locale.hostError}}');
                     } else if (port == '') {
-                        alertError('{{.portError}}')
+                        alertError('{{.Locale.portError}}')
                     } else {
                         //认证中..
                         $('.login').addClass('test'); //倾斜特效
@@ -229,33 +226,6 @@
         })
     })
 
-    //Ajax提交
-    function AjaxPost(Url, JsonData, LodingFun, ReturnFun) {
-        $.ajax({
-            type: "post",
-            url: Url,
-            data: JsonData,
-            // dataType: 'json',
-            async: 'false',
-            beforeSend: LodingFun,
-            error: function (err) {
-                alertError(err);
-            },
-            success: ReturnFun
-        });
-    }
-
-    function alertError(err, timer = 1000) {
-        swal(err, {
-            button: false,
-            timer: timer,
-            icon: "error",
-        });
-    }
-
-    function inputKeyup() {
-
-    }
 
 </script>
 

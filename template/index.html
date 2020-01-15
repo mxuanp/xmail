@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{.welcome}}</title>
+    <title>{{.Locale.welcome}}</title>
+    <link rel="apple-touch-icon" sizes="64x64" href="/static/img/icon64.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="/static/img/icon128.ico">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/static/img/icon64.ico">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="/static/img/icon128.ico">
     <!--STYLESHEET-->
     <!--=================================================-->
     <!--Open Sans Font [ OPTIONAL ]-->
@@ -18,10 +22,13 @@
     <link href="/static/css/mailbox/mailbox.css" rel="stylesheet">
     <!--Magic Checkbox [ OPTIONAL ]-->
     <link href="/static/css/mailbox/magic-check.css" rel="stylesheet">
+    <link href="/static/css/xmail.css" rel="stylesheet">
     <!--JAVASCRIPT-->
     <!--=================================================-->
     <!--Pace - Page Load Progress Par [OPTIONAL]-->
     <link href="/static/css/mailbox/pace.css" rel="stylesheet">
+
+    <!--    <link href="//at.alicdn.com/t/font_1612337_n6wgcxmt6c.css" rel="stylesheet">-->
     <script src="/static/js/pace.js"></script>
     <!--jQuery [ REQUIRED ]-->
     <script src="/static/js/jquery.js"></script>
@@ -29,6 +36,11 @@
     <script src="/static/js/bootstrap.js"></script>
     <!--MailBoxJS [ RECOMMENDED ]-->
     <script src="/static/js/mailbox.js"></script>
+
+    <script type="text/javascript" src="/static/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="/static/js/xmail.js"></script>
+    <!--引入fontjs文件， 来自fonticon.cn, 项目完成时替换为本地版本-->
+    <script src="//at.alicdn.com/t/font_1612337_d3vzcs6bzb.js"></script>
 </head>
 <body>
 <div id="container" class="effect aside-float aside-bright mainnav-lg">
@@ -62,85 +74,38 @@
                                 <div class="col-sm-4 col-md-3">
                                     <!--Mega menu list-->
                                     <ul class="list-unstyled">
-                                        <li class="dropdown-header"><i class="mailbox-pli-file icon-fw"></i> Pages</li>
-                                        <li><a href="#">Profile</a></li>
-                                        <li><a href="#">Search Result</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">Sreen Lock</a></li>
-                                        <li><a href="#" class="disabled">Disabled</a></li>
+                                        <li class="dropdown-header">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-links"></use>
+                                            </svg>
+                                            {{.Locale.links}}
+                                        </li>
+                                        <li><a href="https://github.com/mxuanp/xmail">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-GitHub"></use>
+                                            </svg>
+                                            {{.Locale.github}}</a></li>
+                                        <li><a href="https://yaya.life">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-blog"></use>
+                                            </svg>
+                                            {{.Locale.blog}}</a></li>
+                                        <li><a href="/about">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-about"></use>
+                                            </svg>
+                                            {{.Locale.about}}</a></li>
+                                        <li><a href="https://t.me/yayanogroup">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-telegram"></use>
+                                            </svg>
+                                            {{.Locale.telegram}}</a></li>
+                                        <li><a href="mailto:kamiyamayo7@gmail.com">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-email"></use>
+                                            </svg>
+                                            {{.Locale.email}}</a></li>
                                     </ul>
-                                </div>
-                                <div class="col-sm-4 col-md-3">
-                                    <!--Mega menu list-->
-                                    <ul class="list-unstyled">
-                                        <li class="dropdown-header"><i class="mailbox-pli-mail icon-fw"></i> XMAIL</li>
-                                        <li><a href="#"><span class="pull-right label label-danger">Hot</span>Indox</a>
-                                        </li>
-                                        <li><a href="#">Read Message</a></li>
-                                        <li><a href="#">Compose</a></li>
-                                    </ul>
-                                    <p class="pad-top mar-top bord-top text-sm">Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                        natoque penatibus et magnis dis parturient montes.</p>
-                                </div>
-                                <div class="col-sm-4 col-md-3">
-                                    <!--Mega menu list-->
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#" class="media mar-btm">
-                                                <span class="badge badge-success pull-right">90%</span>
-                                                <div class="media-left">
-                                                    <i class="mailbox-pli-data-settings icon-2x"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <p class="text-semibold text-dark mar-no">Link One</p>
-                                                    <small class="text-muted">This is the item description</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="media mar-btm">
-                                                <div class="media-left">
-                                                    <i class="mailbox-pli-support icon-2x"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <p class="text-semibold text-dark mar-no">Link Two</p>
-                                                    <small class="text-muted">This is the item description</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="media mar-btm">
-                                                <div class="media-left">
-                                                    <i class="mailbox-pli-computer-secure icon-2x"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <p class="text-semibold text-dark mar-no">Link Three</p>
-                                                    <small class="text-muted">This is the item description</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="media mar-btm">
-                                                <div class="media-left">
-                                                    <i class="mailbox-pli-map-2 icon-2x"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <p class="text-semibold text-dark mar-no">Link Four</p>
-                                                    <small class="text-muted">This is the item description</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <p class="dropdown-header"><i class="mailbox-pli-file-jpg icon-fw"></i> Advert</p>
-                                    <ul class="list-unstyled list-inline text-justify">
-                                        <li class="pad-btm">
-                                            <img src="images/menuimg.png" alt="thumbs">
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="btn btn-sm btn-block btn-default">Advertise Here</a>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +114,31 @@
                     <!--End mega dropdown-->
                 </ul>
                 <ul class="nav navbar-top-links pull-right">
+                    <!--语言选项-->
+                    <li class="dropdown" id="select">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                            <div class="username hidden-xs">{{.CurrentLang.Name}}</div>
+                            <span class="pull-right">
+                                <svg class="xmail-icon" aria-hidden="true">
+                                    <use xlink:href="#{{.CurrentLang.Icon}}"></use>
+                                </svg>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+                            <ul class="head-list">
+                                {{range $lang := .Languages}}
+                                <li>
+                                    <a onclick="selectLang({{.Value}})">
+                                        <svg class="xmail-icon" aria-hidden="true">
+                                            <use xlink:href="#{{.Icon}}"></use>
+                                        </svg>
+                                        {{.Name}}
+                                    </a>
+                                </li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </li>
                     <!--User dropdown-->
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <li id="dropdown-user" class="dropdown">
@@ -157,18 +147,9 @@
                                     <!--<img class="img-circle img-user media-object" src="img/profile-photos/1.png" alt="Profile Picture">-->
                                     <i class="mailbox-pli-male ic-user"></i>
                                 </span>
-                            <div class="username hidden-xs">John Doe</div>
+                            <div class="username hidden-xs">{{.CurrentUser.Email}}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
-                            <!-- Dropdown heading  -->
-                            <div class="pad-all bord-btm">
-                                <p class="text-main mar-btm"><span class="text-bold">750GB</span> of 1,000GB Used</p>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar" style="width: 70%;">
-                                        <span class="sr-only">70%</span>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- User dropdown menu -->
                             <ul class="head-list">
                                 <li>
@@ -209,6 +190,12 @@
                     </li>
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End user dropdown-->
+                    <!--关机选项-->
+                    <li class="xmail-menu" id="shutdown">
+                        <svg class="xmail-icon" aria-hidden="true">
+                            <use xlink:href="#icon-tubiao"></use>
+                        </svg>
+                    </li>
                     <li>
                         <a href="#" class="aside-toggle navbar-aside-icon">
                             <i class="pci-ver-dots"></i>
