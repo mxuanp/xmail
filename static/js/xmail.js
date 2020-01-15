@@ -9,6 +9,8 @@ function selectLang(lang) {
             if (resp.code === "0200") {
                 console.log(resp.message)
                 window.location.reload();
+            }else if (resp.code === "0400"){
+                alertError(resp.message, 1500);
             }
         });
 }

@@ -23,5 +23,6 @@
   "github":"Github",
   "about":"About",
   "telegram":"Telegram",
-  "selectSuccess":"Select language success"
+  "selectSuccess":"Select language success",
+  "langRepeat": "Please do lot select same language"
 }

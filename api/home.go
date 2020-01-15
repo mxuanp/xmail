@@ -57,11 +57,17 @@ func GoPage(w http.ResponseWriter, r *http.Request) {
 //SelectLang 处理转换语言的请求
 func SelectLang(w http.ResponseWriter, r *http.Request){
 	lang := r.FormValue("lang")
-	conf.LoadConfig(lang)
 	result := make(map[string]interface{})
+	w.Header().Add("Content-Type", "application/json")
+	if lang == conf.CurrentLang.Value{
+		utils.FormatResult(&result, "0400", conf.Context.Locale["langRepeat"], nil)
+		res,_ := json.Marshal(result)
+		w.Write(res)
+		return
+	}
+	conf.LoadConfig(lang)
 	utils.FormatResult(&result, "0200", conf.Context.Locale["selectSuccess"], nil)
 	res, _ := json.Marshal(result)
-	w.Header().Add("Content-Type", "application/json")
 	w.Write(res)
 }
 
