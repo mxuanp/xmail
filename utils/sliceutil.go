@@ -6,6 +6,7 @@ import (
 	"xmail/model"
 )
 
+//Remove 移除slice中特定的元素
 func Remove(slice []model.User, item model.User) []model.User {
 	if len(slice) == 0 {
 		return nil
@@ -16,4 +17,13 @@ func Remove(slice []model.User, item model.User) []model.User {
 		}
 	}
 	return slice
+}
+
+func HasUser(slice []model.User, email string) bool{
+	for _, s := range slice{
+		if s.Email == email{
+			return true
+		}
+	}
+	return false
 }

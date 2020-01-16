@@ -21,11 +21,13 @@ func main() {
 	http.HandleFunc("/api/logout", api.Logout)
 	http.HandleFunc("/api/shutdown", api.Shutdown)
 	http.HandleFunc("/api/selectLang", api.SelectLang)
+	http.HandleFunc("/api/selectUser", api.SelectUser)
 	//这个路径专用于开发时使用
 	http.HandleFunc("/api/reload", api.Reload)
 	go openBrowser()
 	http.ListenAndServe("localhost:8080", nil)
 }
+//程序启动时打开浏览器
 func openBrowser() {
 	sys := runtime.GOOS
 	if sys == "linux" {
@@ -39,4 +41,9 @@ func openBrowser() {
 	if sys == "darwin" {
 		exec.Command("open", "http://localhost:8080").Start()
 	}
+}
+
+//捕获 ctrl+c
+func catchCtrl(){
+
 }

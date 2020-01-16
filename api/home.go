@@ -59,7 +59,7 @@ func SelectLang(w http.ResponseWriter, r *http.Request){
 	lang := r.FormValue("lang")
 	result := make(map[string]interface{})
 	w.Header().Add("Content-Type", "application/json")
-	if lang == conf.CurrentLang.Value{
+	if lang == conf.Context.CurrentLang.Value{
 		utils.FormatResult(&result, "0400", conf.Context.Locale["langRepeat"], nil)
 		res,_ := json.Marshal(result)
 		w.Write(res)
@@ -71,13 +71,44 @@ func SelectLang(w http.ResponseWriter, r *http.Request){
 	w.Write(res)
 }
 
+//SelectUser 切换用户
+func SelectUser(w http.ResponseWriter, r *http.Request){
+	email := r.FormValue("email")
+	result := make(map[string]interface{})
+    w.Header().Add("Content-Type", "application/json")
+	if email == conf.Context.CurrentUser.Email {
+		utils.FormatResult(&result, "0400", conf.Context.Locale["loginRepeat"], nil)
+		res, _ := json.Marshal(result)
+		w.Write(res)
+		return
+	}
+	for _, user := range conf.Context.Users {
+		if user.Email == email {
+		    //先断开和邮箱服务器的连接
+		    Client.Logout()
+		    var err error
+		    if Client, err = ConnectServer(user.Email, user.Password, user.MailHost, user.Port); err != nil{
+		        utils.FormatResult(&result, "0300", err.Error() + "\n" +conf.Context.Locale["confirm"], nil)
+		        res, _ := json.Marshal(result)
+		        w.Write(res)
+		        return
+		    }
+			conf.Context.CurrentUser = user
+			break
+		}
+	}
+	utils.FormatResult(&result, "0200", conf.Context.Locale["selectSuccess"], nil)
+	res,_ := json.Marshal(result)
+	w.Write(res)
+}
+
 //Shutdown 关闭程序，会保留登录信息
 func Shutdown(w http.ResponseWriter, r *http.Request) {
 	result := make(map[string]interface{})
 	utils.FormatResult(&result, "0200", conf.Context.Locale["logoutSuccess"], nil)
 	w.Header().Add("Content-Type", "application/json")
 	if err := Client.Logout(); err != nil {
-		utils.FormatResult(&result, "0300", err.Error(), nil)
+		utils.FormatResult(&result, "0300", err.Error() + "\n" + conf.Context.Locale["xmailError"], nil)
 		res, _ := json.Marshal(result)
 		w.Write(res)
 		os.Exit(1)

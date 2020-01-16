@@ -19,14 +19,26 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		w.Write(res)
 		return
 	}
+	w.Header().Add("Content-Type", "application/json")
 	email := r.FormValue("email")
+	//禁止重复登录
+	var nilUser model.User
+	if conf.Context.CurrentUser != nilUser && utils.HasUser(conf.Context.Users, email) {
+		utils.FormatResult(&result, "0400", conf.Context.Locale["accountRepeat"], nil)
+		res,_ := json.Marshal(result)
+		w.Write(res)
+		return
+	}
+	//检查是否已经有登录状态，即已有帐号连接到服务器
+	if Client != nil{
+        Client.Logout()
+	}
 	password := r.FormValue("pwd")
 	host := r.FormValue("host")
 	port := r.FormValue("port")
-	w.Header().Add("Content-Type", "application/json")
 	var err error
 	if Client, err = ConnectServer(email, password, host, port); err != nil {
-		utils.FormatResult(&result, "0300", err.Error(), nil)
+		utils.FormatResult(&result, "0300", err.Error() + "\n" + conf.Context.Locale["confirm"], nil)
 		res, _ := json.Marshal(result)
 		w.Write(res)
 		return

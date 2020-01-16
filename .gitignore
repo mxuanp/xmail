@@ -1,3 +1,5 @@
+runner.conf
+/tmp
 /.idea/
 /conf/user.json
 /template/.idea/

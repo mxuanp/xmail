@@ -134,95 +134,79 @@
     layui.use('layer', function () {
         //非空验证
         $('input[type="button"]').click(function () {
-            swal({
-                text: "{{.Locale.confirm}}",
-                icon: "warning",
-                buttons: {
-                    button1: {
-                        text: "{{.Locale.cancel}}",
-                        value: false,
-                    }
-                    , button2: {
-                        text: "{{.Locale.ok}}",
-                        value: true,
-                    }
-                },
-            }).then(function (value) {
-                if (value) {
-                    var email = $('input[name="email"]').val();
-                    var pwd = $('input[name="pwd"]').val();
-                    var host = $('input[name="host"]').val();
-                    var port = $('input[name="port"]').val();
-                    // var code = $('input[name="code"]').val();
-                    if (email == '') {
-                        alertError('{{.Locale.emailError}}');
-                    } else if (pwd == '') {
-                        alertError('{{.Locale.pwdError}}');
-                    } else if (host == '') {
-                        alertError('{{.Locale.hostError}}');
-                    } else if (port == '') {
-                        alertError('{{.Locale.portError}}')
-                    } else {
-                        //认证中..
-                        $('.login').addClass('test'); //倾斜特效
+            var email = $('input[name="email"]').val();
+            var pwd = $('input[name="pwd"]').val();
+            var host = $('input[name="host"]').val();
+            var port = $('input[name="port"]').val();
+            // var code = $('input[name="code"]').val();
+            if (email == '') {
+                alertError('{{.Locale.emailError}}');
+            } else if (pwd == '') {
+                alertError('{{.Locale.pwdError}}');
+            } else if (host == '') {
+                alertError('{{.Locale.hostError}}');
+            } else if (port == '') {
+                alertError('{{.Locale.portError}}')
+            } else {
+                //认证中..
+                $('.login').addClass('test'); //倾斜特效
+                setTimeout(function () {
+                    $('.login').addClass('testtwo'); //平移特效
+                }, 300);
+                setTimeout(function () {
+                    $('.authent').show().animate({right: -320}, {
+                        easing: 'easeOutQuint',
+                        duration: 600,
+                        queue: false
+                    });
+                    $('.authent').animate({opacity: 1}, {
+                        duration: 200,
+                        queue: false
+                    }).addClass('visible');
+                }, 500);
+                //登录
+                var JsonData = {email: email, pwd: pwd, host: host, port: port};
+                // var url = "/login";
+                AjaxPost("/api/login", JsonData,
+                    function () {
+                        //ajax加载中
+                    },
+                    function (resp, status) {
+                        //ajax返回
                         setTimeout(function () {
-                            $('.login').addClass('testtwo'); //平移特效
-                        }, 300);
-                        setTimeout(function () {
-                            $('.authent').show().animate({right: -320}, {
+                            $('.authent').show().animate({right: 90}, {
                                 easing: 'easeOutQuint',
                                 duration: 600,
                                 queue: false
                             });
-                            $('.authent').animate({opacity: 1}, {
+                            $('.authent').animate({opacity: 0}, {
                                 duration: 200,
                                 queue: false
                             }).addClass('visible');
-                        }, 500);
-                        //登录
-                        var JsonData = {email: email, pwd: pwd, host: host, port: port};
-                        // var url = "/login";
-                        AjaxPost("/api/login", JsonData,
-                            function () {
-                                //ajax加载中
-                            },
-                            function (resp, status) {
-                                //ajax返回
+                            $('.login').removeClass('testtwo'); //平移特效
+                        }, 2000);
+                        setTimeout(function () {
+                            $('.authent').hide();
+                            $('.login').removeClass('test');
+                            if (resp.code == '0200') {
+                                //登录成功
+                                $('.login div').fadeOut(100);
+                                swal(resp.message, {
+                                    button: false,
+                                    timer: 2000,
+                                    icon: "success",
+                                });
+                                //2s后跳转操作
                                 setTimeout(function () {
-                                    $('.authent').show().animate({right: 90}, {
-                                        easing: 'easeOutQuint',
-                                        duration: 600,
-                                        queue: false
-                                    });
-                                    $('.authent').animate({opacity: 0}, {
-                                        duration: 200,
-                                        queue: false
-                                    }).addClass('visible');
-                                    $('.login').removeClass('testtwo'); //平移特效
-                                }, 2000);
-                                setTimeout(function () {
-                                    $('.authent').hide();
-                                    $('.login').removeClass('test');
-                                    if (resp.code == '0200') {
-                                        //登录成功
-                                        $('.login div').fadeOut(100);
-                                        swal(resp.message, {
-                                            button: false,
-                                            timer: 2000,
-                                            icon: "success",
-                                        });
-                                        //2s后跳转操作
-                                        setTimeout(function () {
-                                            window.location.href = "/goHome";
-                                        }, 2000)
-                                    } else {
-                                        alertError(resp.message, 2000);
-                                    }
-                                }, 2400);
-                            })
-                    }
-                }
-            })
+                                    window.location.href = "/goHome";
+                                }, 2000)
+                            } else {
+                                alertError(resp.message, 2500);
+                            }
+                        }, 2400);
+                    })
+            }
+
         })
     })
 

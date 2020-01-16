@@ -40,7 +40,7 @@
     <script type="text/javascript" src="/static/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="/static/js/xmail.js"></script>
     <!--引入fontjs文件， 来自fonticon.cn, 项目完成时替换为本地版本-->
-    <script src="//at.alicdn.com/t/font_1612337_d3vzcs6bzb.js"></script>
+    <script src="//at.alicdn.com/t/font_1612337_avc1nkka07u.js"></script>
 </head>
 <body>
 <div id="container" class="effect aside-float aside-bright mainnav-lg">
@@ -152,37 +152,26 @@
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
                             <!-- User dropdown menu -->
                             <ul class="head-list">
+                                {{range $user := .Users}}
                                 <li>
-                                    <a href="#">
-                                        <i class="mailbox-pli-male icon-lg icon-fw"></i> Profile
+                                    <a onclick="selectUser({{.Email}})">
+                                        <i class="mailbox-pli-male ic-user"></i>
+                                        {{.Email}}
                                     </a>
                                 </li>
+                                {{end}}
                                 <li>
-                                    <a href="#">
-                                        <span class="badge badge-danger pull-right">9</span>
-                                        <i class="mailbox-pli-mail icon-lg icon-fw"></i> Messages
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="label label-success pull-right">New</span>
-                                        <i class="mailbox-pli-gear icon-lg icon-fw"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mailbox-pli-information icon-lg icon-fw"></i> Help
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mailbox-pli-computer-secure icon-lg icon-fw"></i> Lock screen
+                                    <a href="/login">
+                                        <svg class="xmail-icon" aria-hidden="true">
+                                            <use xlink:href="#icon-adduser"></use>
+                                        </svg>
+                                        {{.Locale.adduser}}
                                     </a>
                                 </li>
                             </ul>
                             <!-- Dropdown footer -->
                             <div class="pad-all text-right">
-                                <a href="pages-login.html" class="btn btn-primary">
+                                <a href="/api/logout" class="btn btn-primary">
                                     <i class="mailbox-pli-unlock"></i> Logout
                                 </a>
                             </div>
@@ -191,7 +180,7 @@
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End user dropdown-->
                     <!--关机选项-->
-                    <li class="xmail-menu" id="shutdown">
+                    <li class="xmail-menu" onclick="shutdown()">
                         <svg class="xmail-icon" aria-hidden="true">
                             <use xlink:href="#icon-tubiao"></use>
                         </svg>
