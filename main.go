@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"os/exec"
 	"runtime"
+	"xmail/conf"
 
 	"xmail/api"
 )
@@ -11,6 +12,7 @@ import (
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", api.GoHome)
+	http.HandleFunc("/index", api.GoPage)
 	http.HandleFunc("/login", api.GoPage)
 	http.HandleFunc("/compose", api.GoPage)
 	http.HandleFunc("/sent", api.GoPage)
@@ -22,11 +24,14 @@ func main() {
 	http.HandleFunc("/api/shutdown", api.Shutdown)
 	http.HandleFunc("/api/selectLang", api.SelectLang)
 	http.HandleFunc("/api/selectUser", api.SelectUser)
+	http.HandleFunc("/api/loadEmail", api.LoadEmail)
+
 	//这个路径专用于开发时使用
 	http.HandleFunc("/api/reload", api.Reload)
 	go openBrowser()
-	http.ListenAndServe("localhost:8080", nil)
+	http.ListenAndServe(conf.Conf["host"]+":"+conf.Conf["port"], nil)
 }
+
 //程序启动时打开浏览器
 func openBrowser() {
 	sys := runtime.GOOS
@@ -44,6 +49,6 @@ func openBrowser() {
 }
 
 //捕获 ctrl+c
-func catchCtrl(){
+func catchCtrl() {
 
 }

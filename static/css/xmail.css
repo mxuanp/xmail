@@ -1,7 +1,8 @@
-svg{
+.svg-menu{
     margin-top: 10px;
     margin-left: 25px;
 }
+
 .xmail-menu{
     height: 40px;
     width: 70px;
@@ -13,4 +14,15 @@ svg{
     fill: currentColor;
     overflow: hidden;
 }
+.xmail-icon-sm {
+     width: 1.5em;
+     height: 1.5em;
+     vertical-align: -0.15em;
+     fill: currentColor;
+     overflow: hidden;
+ }
 
+.xmail-checkbox{
+    width: 1.5em;
+    height: 1.5em;
+}

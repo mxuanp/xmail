@@ -40,7 +40,7 @@
     <script type="text/javascript" src="/static/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="/static/js/xmail.js"></script>
     <!--引入fontjs文件， 来自fonticon.cn, 项目完成时替换为本地版本-->
-    <script src="//at.alicdn.com/t/font_1612337_avc1nkka07u.js"></script>
+    <script src="//at.alicdn.com/t/font_1612337_vtjzior6bi.js"></script>
 </head>
 <body>
 <div id="container" class="effect aside-float aside-bright mainnav-lg">
@@ -75,36 +75,36 @@
                                     <!--Mega menu list-->
                                     <ul class="list-unstyled">
                                         <li class="dropdown-header">
-                                            <svg class="xmail-icon" aria-hidden="true">
+                                            <svg class="xmail-icon svg-menu" aria-hidden="true">
                                                 <use xlink:href="#icon-links"></use>
                                             </svg>
                                             {{.Locale.links}}
                                         </li>
                                         <li><a href="https://github.com/mxuanp/xmail">
-                                            <svg class="xmail-icon" aria-hidden="true">
-                                                <use xlink:href="#icon-GitHub"></use>
-                                            </svg>
-                                            {{.Locale.github}}</a></li>
+                                                <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                    <use xlink:href="#icon-GitHub"></use>
+                                                </svg>
+                                                {{.Locale.github}}</a></li>
                                         <li><a href="https://yaya.life">
-                                            <svg class="xmail-icon" aria-hidden="true">
-                                                <use xlink:href="#icon-blog"></use>
-                                            </svg>
-                                            {{.Locale.blog}}</a></li>
+                                                <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                    <use xlink:href="#icon-blog"></use>
+                                                </svg>
+                                                {{.Locale.blog}}</a></li>
                                         <li><a href="/about">
-                                            <svg class="xmail-icon" aria-hidden="true">
-                                                <use xlink:href="#icon-about"></use>
-                                            </svg>
-                                            {{.Locale.about}}</a></li>
+                                                <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                    <use xlink:href="#icon-about"></use>
+                                                </svg>
+                                                {{.Locale.about}}</a></li>
                                         <li><a href="https://t.me/yayanogroup">
-                                            <svg class="xmail-icon" aria-hidden="true">
-                                                <use xlink:href="#icon-telegram"></use>
-                                            </svg>
-                                            {{.Locale.telegram}}</a></li>
+                                                <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                    <use xlink:href="#icon-telegram"></use>
+                                                </svg>
+                                                {{.Locale.telegram}}</a></li>
                                         <li><a href="mailto:kamiyamayo7@gmail.com">
-                                            <svg class="xmail-icon" aria-hidden="true">
-                                                <use xlink:href="#icon-email"></use>
-                                            </svg>
-                                            {{.Locale.email}}</a></li>
+                                                <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                    <use xlink:href="#icon-email"></use>
+                                                </svg>
+                                                {{.Locale.email}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
                             <div class="username hidden-xs">{{.CurrentLang.Name}}</div>
                             <span class="pull-right">
-                                <svg class="xmail-icon" aria-hidden="true">
+                                <svg class="xmail-icon svg-menu" aria-hidden="true">
                                     <use xlink:href="#{{.CurrentLang.Icon}}"></use>
                                 </svg>
                             </span>
@@ -127,14 +127,14 @@
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
                             <ul class="head-list">
                                 {{range $lang := .Languages}}
-                                <li>
-                                    <a onclick="selectLang({{.Value}})">
-                                        <svg class="xmail-icon" aria-hidden="true">
-                                            <use xlink:href="#{{.Icon}}"></use>
-                                        </svg>
-                                        {{.Name}}
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a onclick="selectLang({{.Value}})">
+                                            <svg class="xmail-icon svg-menu" aria-hidden="true">
+                                                <use xlink:href="#{{.Icon}}"></use>
+                                            </svg>
+                                            {{.Name}}
+                                        </a>
+                                    </li>
                                 {{end}}
                             </ul>
                         </div>
@@ -153,16 +153,16 @@
                             <!-- User dropdown menu -->
                             <ul class="head-list">
                                 {{range $user := .Users}}
-                                <li>
-                                    <a onclick="selectUser({{.Email}})">
-                                        <i class="mailbox-pli-male ic-user"></i>
-                                        {{.Email}}
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a onclick="selectUser({{.Email}})">
+                                            <i class="mailbox-pli-male ic-user"></i>
+                                            {{.Email}}
+                                        </a>
+                                    </li>
                                 {{end}}
                                 <li>
                                     <a href="/login">
-                                        <svg class="xmail-icon" aria-hidden="true">
+                                        <svg class="xmail-icon svg-menu" aria-hidden="true">
                                             <use xlink:href="#icon-adduser"></use>
                                         </svg>
                                         {{.Locale.adduser}}
@@ -172,7 +172,7 @@
                             <!-- Dropdown footer -->
                             <div class="pad-all text-right">
                                 <a href="/api/logout" class="btn btn-primary">
-                                    <i class="mailbox-pli-unlock"></i> Logout
+                                    <i class="mailbox-pli-unlock"></i>{{.Locale.logout}}
                                 </a>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                     <!--End user dropdown-->
                     <!--关机选项-->
                     <li class="xmail-menu" onclick="shutdown()">
-                        <svg class="xmail-icon" aria-hidden="true">
+                        <svg class="xmail-icon svg-menu" aria-hidden="true">
                             <use xlink:href="#icon-tubiao"></use>
                         </svg>
                     </li>
@@ -205,15 +205,15 @@
                 <div id="custom-search-input">
                     <div class="input-group col-md-3 col-sm-12 pull-left col-md-offset-1 col-sm-offset-5 col-xs-offset-3"
                          style="margin-top: 60px !important;">
-                        <a href="index.html"><h1>XMAIL</h1></a>
+                        <a href="/index"><h1>XMAIL</h1></a>
                     </div>
                     <div class="input-group col-md-7 pull-right col-sm-offset-1" style="margin-top: 80px !important;">
-                        <input type="text" class="  search-query form-control" placeholder="Search"
-                               style="height:35px;"/>
+                        <input type="text" class="  search-query form-control" placeholder="{{.Locale.search}}"
+                               style="height:35px;" id="search-content"/>
                         <span class="input-group-btn">
-                              <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
+                              <button class="btn btn-danger" type="button" id="search" onclick="search()">
+                                   <span class=" glyphicon glyphicon-search"></span>
+                              </button>
                         </span>
                     </div>
                 </div>
@@ -234,163 +234,170 @@
                     <div class="col-md-3">
                         <div class="panel">
                             <div class="pad-all bord-btm">
-                                <a href="/compose" class="btn btn-block btn-success">Compose Mail</a>
+                                <a href="/compose" class="btn btn-block btn-success">{{.Locale.compose}}</a>
                             </div>
-                            <p class="pad-hor mar-top text-main text-bold">Folders</p>
+                            <p class="pad-hor mar-top text-main text-bold">{{.Locale.folders}}</p>
                             <div class="list-group bg-trans pad-btm bord-btm">
-                                <a href="index.html" class="list-group-item text-semibold text-main">
+                                <a href="/index" class="list-group-item text-semibold text-main">
                                     <span class="badge badge-success pull-right">7</span>
-                                    <span class="text-main"><i class="mailbox-pli-inbox-full icon-lg icon-fw"></i> Inbox</span>
+                                    <span class="text-main"><i
+                                                class="mailbox-pli-inbox-full icon-lg icon-fw"></i>{{.Locale.inbox}}</span>
                                 </a>
                                 <a href="/drafts" class="list-group-item">
-                                    <i class="mailbox-pli-file icon-lg icon-fw"></i>
-                                    Draft
+                                    <span class="badge badge-info pull-right">3</span>
+                                    <span class="text-main"><i
+                                                class="mailbox-pli-file icon-lg icon-fw"></i>{{.Locale.draft}}</span>
                                 </a>
                                 <a href="/sent" class="list-group-item">
-                                    <i class="mailbox-pli-mail-send icon-lg icon-fw"></i>
-                                    Sent
+                                    <span class="badge badge-pink pull-right">4</span>
+                                    <span class="text-main"><i
+                                                class="mailbox-pli-mail-send icon-lg icon-fw"></i>{{.Locale.sent}}</span>
                                 </a>
                                 <a href="/spam" class="list-group-item text-semibold">
                                     <span class="badge badge-danger pull-right">3</span>
-                                    <span class="text-main"><i class="mailbox-pli-fire-flame-2 icon-lg icon-fw"></i> Spam</span>
+                                    <span class="text-main"><i
+                                                class="mailbox-pli-fire-flame-2 icon-lg icon-fw"></i>{{.Locale.spam}}</span>
                                 </a>
                                 <a href="/trash" class="list-group-item">
-                                    <i class="mailbox-pli-recycling icon-lg icon-fw"></i>
-                                    Trash
+                                    <span class="badge badge-warning pull-right">3</span>
+                                    <span class="text-main"><i
+                                                class="mailbox-pli-recycling icon-lg icon-fw"></i>{{.Locale.trash}}</span>
                                 </a>
                             </div>
-                            <div class="list-group bg-trans pad-ver">
-                                <a href="#" class="list-group-item"><i
-                                        class="mailbox-pli-male-female icon-lg icon-fw"></i> Address Book</a>
-                                <a href="#" class="list-group-item"><i
-                                        class="mailbox-pli-folder-with-document icon-lg icon-fw"></i> User Folders</a>
-                            </div>
+                            {{/*                            <div class="list-group bg-trans pad-ver">*/}}
+                            {{/*                                <a href="#" class="list-group-item"><i*/}}
+                            {{/*                                            class="mailbox-pli-male-female icon-lg icon-fw"></i> Address Book</a>*/}}
+                            {{/*                                <a href="#" class="list-group-item"><i*/}}
+                            {{/*                                            class="mailbox-pli-folder-with-document icon-lg icon-fw"></i> User*/}}
+                            {{/*                                    Folders</a>*/}}
+                            {{/*                            </div>*/}}
                             <!-- Friends -->
-                            <div class="list-group bg-trans pad-ver bord-ver">
-                                <p class="pad-hor text-main text-bold"><span
-                                        class="pull-right label label-info">New</span>Friends</p>
-                                <!-- Menu list item -->
-                                <a href="#" class="list-group-item list-item-sm">
-                                    <span class="badge badge-purple badge-icon badge-fw pull-left"></span>
-                                    Joey K. Greyson
-                                </a>
-                                <a href="#" class="list-group-item list-item-sm">
-                                    <span class="badge badge-info badge-icon badge-fw pull-left"></span>
-                                    Andrea Branden
-                                </a>
-                                <a href="#" class="list-group-item list-item-sm">
-                                    <span class="badge badge-pink badge-icon badge-fw pull-left"></span>
-                                    Lucy Moon
-                                </a>
-                                <a href="#" class="list-group-item list-item-sm">
-                                    <span class="badge badge-success badge-icon badge-fw pull-left"></span>
-                                    Johny Juan
-                                </a>
-                                <a href="#" class="list-group-item list-item-sm">
-                                    <span class="badge badge-danger badge-icon badge-fw pull-left"></span>
-                                    Susan Sun
-                                </a>
-                            </div>
-
-                            <p class="pad-hor text-main text-bold">Labels</p>
-                            <ul class="list-inline mar-hor">
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Family</a>
-                                </li>
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Home</a>
-                                </li>
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Work</a>
-                                </li>
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Film</a>
-                                </li>
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Music</a>
-                                </li>
-                                <li class="tag tag-sm">
-                                    <a href="#"><i class="mailbox-pli-tag"></i> Photography</a>
-                                </li>
-                            </ul>
+                            {{/*                            <div class="list-group bg-trans pad-ver bord-ver">*/}}
+                            {{/*                                <p class="pad-hor text-main text-bold"><span*/}}
+                            {{/*                                            class="pull-right label label-info">New</span>Friends</p>*/}}
+                            {{/*                                <!-- Menu list item -->*/}}
+                            {{/*                                <a href="#" class="list-group-item list-item-sm">*/}}
+                            {{/*                                    <span class="badge badge-purple badge-icon badge-fw pull-left"></span>*/}}
+                            {{/*                                    Joey K. Greyson*/}}
+                            {{/*                                </a>*/}}
+                            {{/*                            </div>*/}}
+                            {{/* =======================================================   */}}
+                            {{/*                            <p class="pad-hor text-main text-bold">Labels</p>*/}}
+                            {{/*                            <ul class="list-inline mar-hor">*/}}
+                            {{/*                                <li class="tag tag-sm">*/}}
+                            {{/*                                    <a href="#"><i class="mailbox-pli-tag"></i> Family</a>*/}}
+                            {{/*                                </li>*/}}
+                            {{/*                            </ul>*/}}
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="panel">
                             <div id="mailbox-email-list" class="panel-body">
-                                <h1 class="page-header text-overflow pad-btm">Inbox (17)</h1>
-
+                                <h1 class="page-header text-overflow pad-btm">{{.Locale.inbox}} (17)</h1>
                                 <div class="row">
                                     <div class="col-sm-7">
-
                                         <!-- Mail toolbar -->
                                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
                                         <!--Split button dropdowns-->
                                         <div class="btn-group">
                                             <button data-toggle="dropdown"
                                                     class="btn btn-sm btn-default dropdown-toggle" style="padding: 0;">
                                                 <div id="mailbox-checked-all-mail" class="btn btn-sm btn-default"
                                                      style="border:none !important;">
-                                                    <input id="select-all-mail" class="magic-checkbox" type="checkbox">
+                                                    <svg class="xmail-icon-sm" aria-hidden="true">
+                                                        <use xlink:href="#icon-moreinfo"></use>
+                                                    </svg>
                                                     <label for="select-all-mail"></label>
                                                 </div>
-                                                <i class="dropdown-caret"></i></button>
+                                            </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="javascript:void(0)" id="mailbox-select-all-list">All</a>
-                                                </li>
-                                                <li><a href="javascript:void(0)" id="mailbox-select-none-list">None</a>
+                                                <li><a href="javascript:void(0)"
+                                                       onclick="selectAllBox()">{{.Locale.all}}</a>
                                                 </li>
                                                 <li><a href="javascript:void(0)"
-                                                       id="mailbox-select-toggle-list">Toggle</a></li>
+                                                       id="mailbox-select-none-list">{{.Locale.none}}</a>
+                                                </li>
                                                 <li class="divider"></li>
-                                                <li><a href="javascript:void(0)" id="mailbox-select-read-list">Read</a>
-                                                </li>
-                                                <li><a href="javascript:void(0)"
-                                                       id="mailbox-select-unread-list">Unread</a></li>
-                                                <li><a href="javascript:void(0)" id="mailbox-select-starred-list">Starred</a>
-                                                </li>
+                                                {{/*                                                <li><a href="javascript:void(0)" id="mailbox-select-read-list">Read</a>*/}}
+                                                {{/*                                                </li>*/}}
+                                                {{/*                                                <li><a href="javascript:void(0)"*/}}
+                                                {{/*                                                       id="mailbox-select-unread-list">Unread</a></li>*/}}
+                                                {{/*                                                <li><a href="javascript:void(0)" id="mailbox-select-starred-list">Starred</a>*/}}
+                                                {{/*                                                </li>*/}}
                                             </ul>
                                         </div>
 
                                         <!--Refresh button-->
-                                        <button id="mailbox-mail-ref-btn" data-toggle="panel-overlay"
-                                                data-target="#mailbox-email-list" class="btn btn-default btn-sm"
+                                        <button id="mailbox-mail-ref-btn" data-toggle="tooltip" data-placement="bottom"
+                                                title="{{.Locale.refresh}}"
+                                                class="btn btn-default btn-sm"
                                                 type="button">
-                                            <i class="mailbox-psi-repeat-2"></i>
+                                            {{/*                                            <i class="mailbox-psi-repeat-2"></i>*/}}
+                                            <svg class="xmail-icon-sm" aria-hidden="true">
+                                                <use xlink:href="#icon-repeat"></use>
+                                            </svg>
+                                        </button>
+                                        <!--Archive button-->
+                                        <button id="archive-btn" class="btn btn-default btn-sm" type="button"
+                                                data-toggle="tooltip" data-placement="bottom"
+                                                title="{{.Locale.archive}}">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-archive"></use>
+                                            </svg>
+                                        </button>
+                                        <!--Delete button-->
+                                        <button id="delete-btn" class="btn btn-default btn-sm" type="button"
+                                                data-toggle="tooltip" data-placement="bottom"
+                                                title="{{.Locale.delete}}">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-delete"></use>
+                                            </svg>
+                                        </button>
+                                        <button id="star-btn" class="btn btn-default btn-sm" type="button"
+                                                data-toggle="tooltip" data-placement="bottom" title="{{.Locale.star}}">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-star1"></use>
+                                            </svg>
+                                        </button>
+                                        <button id="unstar-btn" class="btn btn-default btn-sm" type="button"
+                                                data-toggle="tooltip" data-placement="bottom"
+                                                title="{{.Locale.unstar}}">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-star"></use>
+                                            </svg>
                                         </button>
 
-                                        <!--Dropdown button (More Action)-->
                                         <div class="btn-group">
-                                            <button data-toggle="dropdown"
-                                                    class="btn btn-sm btn-default dropdown-toggle" type="button">
-                                                More <i class="dropdown-caret"></i>
+                                            <button id="move-btn" class="btn btn-default btn-sm" type="button"
+                                                    data-toggle="dropdown" data-placement="bottom"
+                                                    title="{{.Locale.move}}">
+                                                <svg class="xmail-icon" aria-hidden="true">
+                                                    <use xlink:href="#icon-move"></use>
+                                                </svg>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">Mark as read</a></li>
-                                                <li><a href="#">Mark as unread</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Star</a></li>
-                                                <li><a href="#">Clear Star</a></li>
+                                                <li><a onclick="moveToSpam()">{{.Locale.spam}}</a></li>
+                                                <li><a onclick="moveToTrash()">{{.Locale.trash}}</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <hr class="hr-sm visible-xs">
                                     <div class="col-sm-5 clearfix">
                                         <div class="pull-right">
-
                                             <!--Pager buttons-->
                                             <span class="text-muted">
-					                                <strong>1-50</strong>
-					                                of
-					                                <strong>160</strong>
-					                            </span>
+					                                <strong class="page-num">1-50</strong> of <strong>{{.Count}}</strong>
+                                            </span>
                                             <div class="btn-group btn-group">
                                                 <button class="btn btn-sm btn-default" type="button">
-                                                    <i class="mailbox-psi-arrow-left"></i>
+                                                    <svg class="xmail-icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-prepage"></use>
+                                                    </svg>
                                                 </button>
                                                 <button class="btn btn-sm btn-default" type="button">
-                                                    <i class="mailbox-psi-arrow-right"></i>
+                                                    <svg class="xmail-icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-nextpage"></use>
+                                                    </svg>
                                                 </button>
                                             </div>
                                         </div>
@@ -406,24 +413,25 @@
                                              style="border: 1px solid #ffffff !important;">
                                             <div class="panel-heading">
                                                 <ul class="nav nav-tabs nav-justified">
-                                                    <li class="active"><a href="#tab1default"
-                                                                          data-toggle="tab">Primary</a></li>
-                                                    <li><a href="#tab2default" data-toggle="tab">Social</a></li>
-                                                    <li><a href="#tab3default" data-toggle="tab">Promotions</a></li>
-                                                    <li class="dropdown">
-                                                        <a href="#" data-toggle="dropdown">Updates <span
-                                                                class="caret"></span></a>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="#tab4default" data-toggle="tab">Forums</a></li>
-                                                            <li><a href="#tab5default"
-                                                                   data-toggle="tab">Transactions</a></li>
-                                                        </ul>
-                                                    </li>
+                                                    <li class="active"><a href="#primary"
+                                                                          data-toggle="tab">{{.Locale.primary}}</a></li>
+                                                    <li><a href="#social" data-toggle="tab">{{.Locale.social}}</a></li>
+                                                    <li><a href="#promotions"
+                                                           data-toggle="tab">{{.Locale.promotions}}</a></li>
+                                                    {{/*                                                    <li class="dropdown">*/}}
+                                                    {{/*                                                        <a href="#" data-toggle="dropdown">Updates <span*/}}
+                                                    {{/*                                                                    class="caret"></span></a>*/}}
+                                                    {{/*                                                        <ul class="dropdown-menu" role="menu">*/}}
+                                                    {{/*                                                            <li><a href="#tab4default" data-toggle="tab">Forums</a></li>*/}}
+                                                    {{/*                                                            <li><a href="#tab5default"*/}}
+                                                    {{/*                                                                   data-toggle="tab">Transactions</a></li>*/}}
+                                                    {{/*                                                        </ul>*/}}
+                                                    {{/*                                                    </li>*/}}
                                                 </ul>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="tab-content">
-                                                    <div class="tab-pane fade in active" id="tab1default">
+                                                    <div class="tab-pane fade in active" id="primary">
                                                         <!--Mail list group-->
                                                         <ul id="mailbox-mail-list" class="mail-list">
 
@@ -435,7 +443,7 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">James Tran</a></div>
                                                                 <div class="mail-time">05:55 PM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -449,37 +457,18 @@
                                                             </li>
 
                                                             <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Shopping Mall</a>
-                                                                </div>
-                                                                <div class="mail-time">10:45 AM</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">Tracking Your Order -
-                                                                        Shoes Store Online</a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
                                                             <li class="mail-list-unread mail-starred mail-attach">
                                                                 <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
+                                                                    <input id="email-list-2" class="magic-checkbox"
                                                                            type="checkbox">
-                                                                    <label for="email-list-1"></label>
+                                                                    <label for="email-list-2"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Dropbox</a></div>
                                                                 <div class="mail-time">07:18 AM</div>
                                                                 <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
+                                                                            class="mailbox-psi-paperclip"></i></div>
                                                                 <div class="mail-subject">
                                                                     <a href="mailbox-message.html">Reset your account
                                                                         password</a>
@@ -489,12 +478,12 @@
                                                             <!--Mail list item-->
                                                             <li class="mail-list-unread">
                                                                 <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
+                                                                    <input id="email-list-3" class="magic-checkbox"
                                                                            type="checkbox">
-                                                                    <label for="email-list-1"></label>
+                                                                    <label for="email-list-3"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Server Host</a></div>
                                                                 <div class="mail-time">01:51 PM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -507,246 +496,11 @@
                                                                     </a>
                                                                 </div>
                                                             </li>
-
-                                                            <!--Mail list item-->
-                                                            <li>
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lisa D. Smith</a>
-                                                                </div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">Hi John! How are
-                                                                        you?</a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Johny Juan</a></div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                            <span class="label label-info">
-                                                                            Partner
-                                                                            </span>
-                                                                        Repair Status Unregistered User
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Bobby Marz</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Bugs in your
-                                                                    system.</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lucy Moon</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">We need to meet up
-                                                                    soon</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Michael Robert</a>
-                                                                </div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">This is an example
-                                                                    if there is a really really long text. Lorem ipsum
-                                                                    dolor sit amet, consectetur adipiscing elit, sed do
-                                                                    eiusmod tempor incididunt ut labore et dolore magna
-                                                                    aliqua. Ut enim ad minim veniam, </a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Shopping Mall</a>
-                                                                </div>
-                                                                <div class="mail-time">Oct 9</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Tracking Your Order
-                                                                    - Shoes Store Online</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Dropbox</a></div>
-                                                                <div class="mail-time">Oct 8</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Reset your account
-                                                                    password</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Server Host</a></div>
-                                                                <div class="mail-time">Oct 7</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                            <span class="label label-danger">
-                                                                                Busines
-                                                                            </span>
-                                                                        Regarding to your website issues.
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lisa D. Smith</a>
-                                                                </div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Hi John! How are
-                                                                    you?</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Johny Juan</a></div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                            <span class="label label-info">
-                                                                                Partner
-                                                                            </span>
-                                                                        Repair Status Unregistered User
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Bobby Marz</a></div>
-                                                                <div class="mail-time">Oct 3</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Bugs in your
-                                                                    system.</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lucy Moon</a></div>
-                                                                <div class="mail-time">Oct 1</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">We need to meet up
-                                                                    soon</a></div>
-                                                            </li>
                                                         </ul>
-
                                                         <!-- Mail List Ends Here -->
                                                     </div>
-                                                    <div class="tab-pane fade" id="tab2default">
+
+                                                    <div class="tab-pane fade" id="social">
                                                         <!--Mail list group-->
                                                         <ul id="mailbox-mail-list" class="mail-list">
 
@@ -758,7 +512,7 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Twitter</a></div>
                                                                 <div class="mail-time">05:55 PM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -779,7 +533,7 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">facebook</a></div>
                                                                 <div class="mail-time">10:45 AM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -797,263 +551,24 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Linkden</a></div>
                                                                 <div class="mail-time">07:18 AM</div>
                                                                 <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
+                                                                            class="mailbox-psi-paperclip"></i></div>
                                                                 <div class="mail-subject">
                                                                     <a href="mailbox-message.html">Reset your account
                                                                         password</a>
                                                                 </div>
                                                             </li>
 
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">01:51 PM</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        You have a new message.
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li>
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Twitter</a></div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">Hi John! How are
-                                                                        you?</a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        Reset your password
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">You have two new
-                                                                    friend requests.</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Twitter</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">You have a new
-                                                                    follower</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Linkden</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">This is an example
-                                                                    if there is a really really long text. Lorem ipsum
-                                                                    dolor sit amet, consectetur adipiscing elit, sed do
-                                                                    eiusmod tempor incididunt ut labore et dolore magna
-                                                                    aliqua. Ut enim ad minim veniam, </a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Twitter</a></div>
-                                                                <div class="mail-time">Oct 9</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Promote You
-                                                                    Tweets</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 8</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Reset your account
-                                                                    password</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Pinterest</a></div>
-                                                                <div class="mail-time">Oct 7</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        New Pins that you may like.
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Hi John! How are
-                                                                    you?</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        Repair Status Unregistered User
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Bobby Marz</a></div>
-                                                                <div class="mail-time">Oct 3</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Bugs in your
-                                                                    system.</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lucy Moon</a></div>
-                                                                <div class="mail-time">Oct 1</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">We need to meet up
-                                                                    soon</a></div>
-                                                            </li>
                                                         </ul>
 
                                                         <!-- Mail List Ends Here -->
 
                                                     </div>
-                                                    <div class="tab-pane fade" id="tab3default">
+
+                                                    <div class="tab-pane fade" id="promotions">
 
                                                         <!--Mail list group-->
                                                         <ul id="mailbox-mail-list" class="mail-list">
@@ -1066,7 +581,7 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Envato</a></div>
                                                                 <div class="mail-time">05:55 PM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -1087,7 +602,7 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Themeforest</a></div>
                                                                 <div class="mail-time">10:45 AM</div>
                                                                 <div class="mail-attach-icon"></div>
@@ -1105,267 +620,26 @@
                                                                     <label for="email-list-1"></label>
                                                                 </div>
                                                                 <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
+                                                                                class="mailbox-psi-star"></i></a></div>
                                                                 <div class="mail-from"><a href="#">Codecanyon</a></div>
                                                                 <div class="mail-time">07:18 AM</div>
                                                                 <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
+                                                                            class="mailbox-psi-paperclip"></i></div>
                                                                 <div class="mail-subject">
                                                                     <a href="mailbox-message.html">Reset your account
                                                                         password</a>
                                                                 </div>
                                                             </li>
 
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">videohive</a></div>
-                                                                <div class="mail-time">01:51 PM</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        You have a new message.
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li>
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">audiojungle</a></div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">Hi John! How are
-                                                                        you?</a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">graphicriver</a>
-                                                                </div>
-                                                                <div class="mail-time">Yesterday</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        Reset your password
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">3docean</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">You have two new
-                                                                    friend requests.</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">photodune</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">You have a new
-                                                                    follower</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">envato</a></div>
-                                                                <div class="mail-time">Oct 10</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">This is an example
-                                                                    if there is a really really long text. Lorem ipsum
-                                                                    dolor sit amet, consectetur adipiscing elit, sed do
-                                                                    eiusmod tempor incididunt ut labore et dolore magna
-                                                                    aliqua. Ut enim ad minim veniam, </a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Codecanyon</a></div>
-                                                                <div class="mail-time">Oct 9</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Promote You
-                                                                    Tweets</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">CodeCanyon</a></div>
-                                                                <div class="mail-time">Oct 8</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Reset your account
-                                                                    password</a></div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-list-unread">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Themeforest</a></div>
-                                                                <div class="mail-time">Oct 7</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        New Pins that you may like.
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Hi John! How are
-                                                                    you?</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <li class="mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">facebook</a></div>
-                                                                <div class="mail-time">Oct 5</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject">
-                                                                    <a href="mailbox-message.html">
-                                                                        Repair Status Unregistered User
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-attach">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Bobby Marz</a></div>
-                                                                <div class="mail-time">Oct 3</div>
-                                                                <div class="mail-attach-icon"><i
-                                                                        class="mailbox-psi-paperclip"></i></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">Bugs in your
-                                                                    system.</a></div>
-                                                            </li>
-
-
-                                                            <!--Mail list item-->
-                                                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                                            <li class="mail-list-unread mail-starred">
-                                                                <div class="mail-control">
-                                                                    <input id="email-list-1" class="magic-checkbox"
-                                                                           type="checkbox">
-                                                                    <label for="email-list-1"></label>
-                                                                </div>
-                                                                <div class="mail-star"><a href="#"><i
-                                                                        class="mailbox-psi-star"></i></a></div>
-                                                                <div class="mail-from"><a href="#">Lucy Moon</a></div>
-                                                                <div class="mail-time">Oct 1</div>
-                                                                <div class="mail-attach-icon"></div>
-                                                                <div class="mail-subject"><a
-                                                                        href="mailbox-message.html">We need to meet up
-                                                                    soon</a></div>
-                                                            </li>
                                                         </ul>
 
                                                         <!-- Mail List Ends Here -->
                                                     </div>
-                                                    <div class="tab-pane fade" id="tab4default">Your Desired Content
-                                                    </div>
-                                                    <div class="tab-pane fade" id="tab5default">Your Desired Content Tab
-                                                        5
-                                                    </div>
+                                                    {{/*                                                    <div class="tab-pane fade" id="tab4default">Your Desired Content*/}}
+                                                    {{/*                                                    </div>*/}}
+                                                    {{/*                                                    <div class="tab-pane fade" id="tab5default">Your Desired Content Tab*/}}
+                                                    {{/*                                                        5*/}}
+                                                    {{/*                                                    </div>*/}}
                                                 </div>
                                             </div>
                                         </div>
@@ -1381,13 +655,18 @@
                             <!--Mail footer-->
                             <div class="panel-footer clearfix">
                                 <div class="pull-right">
-                                    <span class="text-muted"><strong>1-50</strong> of <strong>160</strong></span>
+                                    <span class="text-muted"><strong
+                                                class="page-num">1-50</strong> of <strong>{{.Count}}</strong></span>
                                     <div class="btn-group btn-group">
-                                        <button type="button" class="btn btn-default">
-                                            <i class="mailbox-psi-arrow-left"></i>
+                                        <button class="btn btn-sm btn-default" type="button">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-prepage"></use>
+                                            </svg>
                                         </button>
-                                        <button type="button" class="btn btn-default">
-                                            <i class="mailbox-psi-arrow-right"></i>
+                                        <button class="btn btn-sm btn-default" type="button">
+                                            <svg class="xmail-icon" aria-hidden="true">
+                                                <use xlink:href="#icon-nextpage"></use>
+                                            </svg>
                                         </button>
                                     </div>
                                 </div>
@@ -1421,24 +700,25 @@
                         <!--================================-->
                         <ul class="nav nav-tabs nav-justified">
                             <li class="active">
-                                <a href="#mailbox-asd-tab-1" data-toggle="tab">
-                                    <i class="mailbox-pli-speech-bubble-7"></i>
+                                <a href="#contacts" data-toggle="tab">
+                                    <i class="mailbox-pli-speech-bubble-7"></i> {{.Locale.contact}}
                                 </a>
                             </li>
+
                             <li>
-                                <a href="#mailbox-asd-tab-2" data-toggle="tab">
-                                    <i class="mailbox-pli-information icon-fw"></i> Report
+                                <a href="#settings" data-toggle="tab">
+                                    <i class="mailbox-pli-wrench icon-fw"></i> {{.Locale.settings}}
                                 </a>
                             </li>
+
                             <li>
-                                <a href="#mailbox-asd-tab-3" data-toggle="tab">
-                                    <i class="mailbox-pli-wrench icon-fw"></i> Settings
+                                <a href="#report" data-toggle="tab">
+                                    <i class="mailbox-pli-information icon-fw"></i> {{.Locale.report}}
                                 </a>
                             </li>
                         </ul>
                         <!--================================-->
                         <!--End nav tabs-->
-
 
                         <!-- Tabs Content -->
                         <!--================================-->
@@ -1446,82 +726,22 @@
 
                             <!--First tab (Contact list)-->
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <div class="tab-pane fade in active" id="mailbox-asd-tab-1">
+                            <div class="tab-pane fade in active" id="contacts">
                                 <p class="pad-hor mar-top text-semibold text-main">
-                                    <span class="pull-right badge badge-warning">3</span> Family
+                                    <span class="pull-right badge badge-warning">1</span> {{.Locale.family}}
                                 </p>
 
                                 <!--Family-->
                                 <div class="list-group bg-trans">
                                     <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/1.png"
-                                                 alt="Profile Picture">
-                                            <i class="badge badge-success badge-stat badge-icon pull-left"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">James Tran</p>
-                                            <small class="text-muted">Availabe</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/2.png"
-                                                 alt="Profile Picture">
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">William Meyer</p>
-                                            <small class="text-muted">I think so</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/3.png"
-                                                 alt="Profile Picture">
-                                            <i class="badge badge-info badge-stat badge-icon pull-left"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">Amalia George</p>
-                                            <small class="text-muted">Last Seen 2 hours ago</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/4.png"
-                                                 alt="Profile Picture">
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">Donald Brown</p>
-                                            <small class="text-muted">Lorem ipsum dolor sit amet.</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/5.png"
-                                                 alt="Profile Picture">
-                                            <i class="badge badge-warning badge-stat badge-icon pull-left"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">Betty Murphy</p>
-                                            <small class="text-muted">Idle</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <div class="media-left pos-rel">
-                                            <img class="img-circle img-xs" src="images/user/6.png"
-                                                 alt="Profile Picture">
-                                            <i class="badge badge-danger badge-stat badge-icon pull-left"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="mar-no">Samantha Reid</p>
-                                            <small class="text-muted">Offline</small>
-                                        </div>
+                                        <span class="badge badge-purple badge-icon badge-fw pull-left"></span> Joey K.
+                                        Greyson
                                     </a>
                                 </div>
 
                                 <hr>
                                 <p class="pad-hor text-semibold text-main">
-                                    <span class="pull-right badge badge-success">Offline</span> Friends
+                                    <span class="pull-right badge badge-success">1</span> {{.Locale.friends}}
                                 </p>
 
                                 <!--Works-->
@@ -1530,90 +750,13 @@
                                         <span class="badge badge-purple badge-icon badge-fw pull-left"></span> Joey K.
                                         Greyson
                                     </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge badge-info badge-icon badge-fw pull-left"></span> Andrea
-                                        Branden
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge badge-success badge-icon badge-fw pull-left"></span> Johny
-                                        Juan
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge badge-danger badge-icon badge-fw pull-left"></span> Susan Sun
-                                    </a>
                                 </div>
-
-
-                                <hr>
-                                <p class="pad-hor mar-top text-semibold text-main">News</p>
-
-                                <div class="pad-hor">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetuer
-                                        <a data-title="45%" class="add-tooltip text-semibold" href="#">adipiscing
-                                            elit</a>, sed diam nonummy nibh. Lorem ipsum dolor sit amet.
-                                    </p>
-                                    <small class="text-muted"><em>Last Update : April 01, 2017</em></small>
-                                </div>
-
 
                             </div>
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <!--End first tab (Contact list)-->
 
-
-                            <!--Second tab (Custom layout)-->
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <div class="tab-pane fade" id="mailbox-asd-tab-2">
-
-                                <!--Monthly billing-->
-                                <div class="pad-all">
-                                    <p class="text-semibold text-main">Billing &amp; reports</p>
-                                    <p class="text-muted">Get <strong>$5.00</strong> off your next bill by making sure
-                                        your full payment reaches us before August 5, 2016.</p>
-                                </div>
-                                <hr class="new-section-xs">
-                                <div class="pad-all">
-                                    <span class="text-semibold text-main">Amount Due On</span>
-                                    <p class="text-muted text-sm">August 17, 2016</p>
-                                    <p class="text-2x text-thin text-main">$83.09</p>
-                                    <button class="btn btn-block btn-success mar-top">Pay Now</button>
-                                </div>
-
-
-                                <hr>
-
-                                <p class="pad-hor text-semibold text-main">Additional Actions</p>
-
-                                <!--Simple Menu-->
-                                <div class="list-group bg-trans">
-                                    <a href="#" class="list-group-item"><i
-                                            class="mailbox-pli-information icon-lg icon-fw"></i> Service Information</a>
-                                    <a href="#" class="list-group-item"><i class="mailbox-pli-mine icon-lg icon-fw"></i>
-                                        Usage Profile</a>
-                                    <a href="#" class="list-group-item"><span
-                                            class="label label-info pull-right">New</span><i
-                                            class="mailbox-pli-credit-card-2 icon-lg icon-fw"></i> Payment Options</a>
-                                    <a href="#" class="list-group-item"><i
-                                            class="mailbox-pli-support icon-lg icon-fw"></i> Message Center</a>
-                                </div>
-
-
-                                <hr>
-
-                                <div class="text-center">
-                                    <div><i class="mailbox-pli-old-telephone icon-3x"></i></div>
-                                    Questions?
-                                    <p class="text-lg text-semibold text-main"> (415) 234-53454 </p>
-                                    <small><em>We are here 24/7</em></small>
-                                </div>
-                            </div>
-                            <!--End second tab (Custom layout)-->
-                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-
-                            <!--Third tab (Settings)-->
-                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <div class="tab-pane fade" id="mailbox-asd-tab-3">
+                            <div class="tab-pane fade" id="settings">
                                 <ul class="list-group bg-trans">
                                     <li class="pad-top list-header">
                                         <p class="text-semibold text-main mar-no">Account Settings</p>
@@ -1627,32 +770,14 @@
                                         <small class="text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing
                                             elit.</small>
                                     </li>
-                                    <li class="list-group-item">
-                                        <div class="pull-right">
-                                            <input class="toggle-switch" id="mailbox-switch-2" type="checkbox" checked>
-                                            <label for="mailbox-switch-2"></label>
-                                        </div>
-                                        <p class="mar-no">Show offline contact</p>
-                                        <small class="text-muted">Aenean commodo ligula eget dolor. Aenean
-                                            massa.</small>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="pull-right">
-                                            <input class="toggle-switch" id="mailbox-switch-3" type="checkbox">
-                                            <label for="mailbox-switch-3"></label>
-                                        </div>
-                                        <p class="mar-no">Invisible mode </p>
-                                        <small class="text-muted">Cum sociis natoque penatibus et magnis dis parturient
-                                            montes, nascetur ridiculus mus. </small>
-                                    </li>
-                                </ul>
 
+                                </ul>
 
                                 <hr>
 
                                 <ul class="list-group pad-btm bg-trans">
                                     <li class="list-header"><p class="text-semibold text-main mar-no">Public
-                                        Settings</p></li>
+                                            Settings</p></li>
                                     <li class="list-group-item">
                                         <div class="pull-right">
                                             <input class="toggle-switch" id="mailbox-switch-4" type="checkbox" checked>
@@ -1660,46 +785,27 @@
                                         </div>
                                         Online status
                                     </li>
-                                    <li class="list-group-item">
-                                        <div class="pull-right">
-                                            <input class="toggle-switch" id="mailbox-switch-5" type="checkbox" checked>
-                                            <label for="mailbox-switch-5"></label>
-                                        </div>
-                                        Show offline contact
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="pull-right">
-                                            <input class="toggle-switch" id="mailbox-switch-6" type="checkbox" checked>
-                                            <label for="mailbox-switch-6"></label>
-                                        </div>
-                                        Show my device icon
-                                    </li>
+
                                 </ul>
 
 
-                                <hr>
+                            </div>
+                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-                                <p class="pad-hor text-semibold text-main mar-no">Task Progress</p>
+                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                            <div class="tab-pane fade" id="report">
+
+                                <!--Monthly billing-->
                                 <div class="pad-all">
-                                    <p>Upgrade Progress</p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar progress-bar-success" style="width: 15%;"><span
-                                                class="sr-only">15%</span></div>
-                                    </div>
-                                    <small class="text-muted">15% Completed</small>
+                                    <p class="text-semibold text-main">Billing &amp; reports</p>
+                                    <p class="text-muted">Get <strong>$5.00</strong> off your next bill by making sure
+                                        your full payment reaches us before August 5, 2016.</p>
                                 </div>
-                                <div class="pad-hor">
-                                    <p>Database</p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar progress-bar-danger" style="width: 75%;"><span
-                                                class="sr-only">75%</span></div>
-                                    </div>
-                                    <small class="text-muted">17/23 Database</small>
-                                </div>
+                                <hr class="new-section-xs">
 
                             </div>
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <!--Third tab (Settings)-->
+
 
                         </div>
                     </div>
@@ -1718,16 +824,9 @@
 
         <!-- Visible when footer positions are fixed -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <div class="show-fixed pull-right">
+        <div class="pull-right">
             You have <a href="#" class="text-bold text-main"><span class="label label-danger">3</span> pending
-            action.</a>
-        </div>
-
-
-        <!-- Visible when footer positions are static -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <div class="hide-fixed pull-right pad-rgt">
-            14GB of <strong>512GB</strong> Free.
+                action.</a>
         </div>
 
 
@@ -1735,7 +834,7 @@
         <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-        <p class="pad-lft">&#0169; 2017 Your Company</p>
+        <p class="pad-lft">&#0169; 2020 xmail</p>
 
 
     </footer>
@@ -1754,7 +853,14 @@
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->
-
+<script>
+    $(document).keypress(function (e) {
+        // 回车键事件
+        if (e.which == 13) {
+            $('#search').click();
+        }
+    });
+</script>
 
 <script data-cfasync="false" src="/static/js/email-decode.min.js"></script>
 </body>

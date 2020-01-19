@@ -1,21 +1,47 @@
-function shutdown() {
-    AjaxPost("/api/shutdown", null,
-        function () {
-
-        },
-        function (resp, status) {
-            if (resp.code === "0200"){
-                closeWindow();
-            }else {
-
-            }
-        })
+//移动邮件到spam, 暂未实现
+function moveToSpam() {
+    
+}
+//移动邮件到trash，暂未实现
+function moveToTrash() {
+    
 }
 
-function closeWindow(){
+//改变所有checkbox的状态
+function selectAllBox() {
+    $("input:checkbox").prop("checked", true);
+}
+
+//从所有邮件中搜索
+//后台暂未实现
+function search() {
+    let key = $("#search-content").val();
+    swal(key, {
+        timer: 1000,
+        button: false
+    })
+}
+
+//通知后台退出程序
+function shutdown() {
+    $.ajax({
+        type: "post",
+        url: "/api/shutdown",
+        async: 'true',
+        error: function (err) {
+            closeWindow();
+        },
+        success: function () {
+            closeWindow();
+        }
+    });
+}
+
+//关闭当前窗口
+function closeWindow() {
     var userAgent = navigator.userAgent;
-    if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
-        window.location.href="about:blank";
+    if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") != -1) {
+        window.location.href = "about:blank";
         window.close();
     } else {
         window.opener = null;
@@ -23,6 +49,7 @@ function closeWindow(){
         window.close();
     }
 }
+
 //切换用户
 function selectUser(email) {
     //有和selectLang同样的错误，邮箱变成了 &#34;test@gmail.com&#34; 但是却不需要进行处理，真是奇怪
@@ -32,10 +59,10 @@ function selectUser(email) {
 
         },
         function (resp, status) {
-            if (resp.code === "0200"){
+            if (resp.code === "0200") {
                 window.location.reload();
-            }else{
-                alertError(resp.message,1500)
+            } else {
+                alertError(resp.message, 1500);
             }
         });
 }

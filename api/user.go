@@ -13,14 +13,18 @@ import (
 //Login 登录imap服务器
 func Login(w http.ResponseWriter, r *http.Request) {
 	result := make(map[string]interface{})
+
 	if r.Method != "POST" {
 		utils.FormatResult(&result, "0300", conf.Context.Locale["methodError"], nil)
 		res, _ := json.Marshal(result)
 		w.Write(res)
 		return
 	}
+
 	w.Header().Add("Content-Type", "application/json")
+
 	email := r.FormValue("email")
+
 	//禁止重复登录
 	var nilUser model.User
 	if conf.Context.CurrentUser != nilUser && utils.HasUser(conf.Context.Users, email) {
@@ -29,13 +33,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		w.Write(res)
 		return
 	}
+
 	//检查是否已经有登录状态，即已有帐号连接到服务器
 	if Client != nil{
         Client.Logout()
 	}
+
 	password := r.FormValue("pwd")
 	host := r.FormValue("host")
 	port := r.FormValue("port")
+
 	var err error
 	if Client, err = ConnectServer(email, password, host, port); err != nil {
 		utils.FormatResult(&result, "0300", err.Error() + "\n" + conf.Context.Locale["confirm"], nil)
@@ -43,11 +50,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		w.Write(res)
 		return
 	}
+
 	conf.Context.CurrentUser = model.User{Password: password, Email: email, MailHost: host, Port: port}
 	conf.Context.Users = append(conf.Context.Users, conf.Context.CurrentUser)
+
 	utils.FormatResult(&result, "0200", conf.Context.Locale["loginSuccess"], conf.Context.CurrentUser)
 	res, _ := json.Marshal(result)
+
 	go RestoreUser()
+
 	w.Write(res)
 }
 

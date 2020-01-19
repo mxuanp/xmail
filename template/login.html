@@ -127,7 +127,7 @@
         }
         var email = $(this).val();
         if (email.indexOf("@") != -1) {
-            $('input[name="host"]').val(email.split("@")[1]);
+            $('input[name="host"]').val("imap."+email.split("@")[1]);
         }
     })
     var open = 0;

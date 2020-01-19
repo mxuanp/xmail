@@ -3,6 +3,7 @@ runner.conf
 /.idea/
 /conf/user.json
 /template/.idea/
+/conf/locale/sortWord.go
 # Binaries for programs and plugins
 *.exe
 *.exe~
